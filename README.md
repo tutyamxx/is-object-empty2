@@ -31,7 +31,7 @@ $ npm i is-object-empty2
 
 # JavaScript
 ```javascript
-const isObjectEmpty2 = require('is-object-empty');
+const isObjectEmpty2 = require('is-object-empty2');
 
 console.log(isObjectEmpty2({}));           // true
 console.log(isObjectEmpty2({ a: 1 }));     // false
@@ -42,7 +42,7 @@ console.log(isObjectEmpty2(undefined));    // false
 
 # TypeScript
 ```javascript
-import isObjectEmpty2 = require('is-object-empty');
+import isObjectEmpty2 = require('is-object-empty2');
 
 const testValues: unknown[] = [
     {},
