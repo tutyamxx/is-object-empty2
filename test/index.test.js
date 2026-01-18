@@ -1,0 +1,87 @@
+const isObjectEmpty2 = require('../index.js')
+
+describe('isObjectEmpty2', () => {
+    test('Returns true for an empty object', () => expect(isObjectEmpty2({})).toBe(true));
+
+    test('Returns false for a non-empty object', () => {
+        expect(isObjectEmpty2({ a: 1 })).toBe(false);
+        expect(isObjectEmpty2({ key: 'value' })).toBe(false);
+    });
+
+    test('Returns false for arrays', () => {
+        expect(isObjectEmpty2([])).toBe(false);
+        expect(isObjectEmpty2([1, 2, 3])).toBe(false);
+    });
+
+    test('Returns false for null and undefined', () => {
+        expect(isObjectEmpty2(null)).toBe(false);
+        expect(isObjectEmpty2(undefined)).toBe(false);
+    });
+
+    test('Returns false for non-object types', () => {
+        expect(isObjectEmpty2('string')).toBe(false);
+        expect(isObjectEmpty2(123)).toBe(false);
+        expect(isObjectEmpty2(true)).toBe(false);
+        expect(isObjectEmpty2(Infinity)).toBe(false);
+        expect(isObjectEmpty2(-Infinity)).toBe(false);
+        expect(isObjectEmpty2(() => {})).toBe(false);
+        expect(isObjectEmpty2(Symbol('sym'))).toBe(false);
+        expect(isObjectEmpty2(BigInt(123))).toBe(false);
+    });
+
+    test('Returns true for object created with Object.create(null)', () => {
+        const obj = Object.create(null);
+        expect(isObjectEmpty2(obj)).toBe(true);
+
+        obj.a = 1;
+
+        expect(isObjectEmpty2(obj)).toBe(false);
+    });
+
+    test('Nested empty object still counts as non-empty', () => expect(isObjectEmpty2({ nested: {} })).toBe(false));
+
+    test('Deeply nested empty objects still count as non-empty', () => {
+        const obj = { a: { b: { c: {} } } };
+        expect(isObjectEmpty2(obj)).toBe(false);
+    });
+
+    test('Objects with inherited properties are considered non-empty', () => {
+        function Parent() {
+            this.a = 1;
+        }
+
+        const child = new Parent();
+        expect(isObjectEmpty2(child)).toBe(false);
+    });
+
+    test('Frozen empty objects still return true', () => {
+        const obj = Object.freeze({});
+        expect(isObjectEmpty2(obj)).toBe(true);
+    });
+
+    test('Sealed empty objects still return true', () => {
+        const obj = Object.seal({});
+        expect(isObjectEmpty2(obj)).toBe(true);
+    });
+
+    test('Proxy objects with empty target return true', () => {
+        const target = {};
+        const proxy = new Proxy(target, {});
+
+        expect(isObjectEmpty2(proxy)).toBe(true);
+    });
+
+    test('Proxy objects with keys return false', () => {
+        const target = { a: 1 };
+        const proxy = new Proxy(target, {});
+
+        expect(isObjectEmpty2(proxy)).toBe(false);
+    });
+
+    test('Objects with non-enumerable properties are considered empty', () => {
+        const obj = {};
+
+        Object.defineProperty(obj, 'hidden', { value: 123, enumerable: false });
+        expect(isObjectEmpty2(obj)).toBe(true);
+    });
+});

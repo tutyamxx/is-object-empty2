@@ -1,0 +1,32 @@
+{
+  "name": "is-object-empty2",
+  "version": "1.0.0",
+  "description": "📦 Tiny utility to check if a value is a plain empty object in JavaScript or TypeScript",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "jest --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tutyamxx/is-object-empty"
+  },
+  "keywords": [
+    "is-object-empty",
+    "isemptyobject",
+    "is-object-empty",
+    "empty-object"
+  ],
+  "author": "tuty",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tutyamxx/is-object-empty/issues"
+  },
+  "homepage": "https://github.com/tutyamxx/is-object-empty#readme",
+  "devDependencies": {
+    "jest": "^30.2.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
