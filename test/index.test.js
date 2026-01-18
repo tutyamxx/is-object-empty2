@@ -95,11 +95,13 @@ describe('isObjectEmpty2', () => {
 
     test('Object with multiple Symbol properties is considered non-empty', () => {
         const obj = {};
+
         const sym1 = Symbol('test1');
         const sym2 = Symbol('test2');
 
         obj[sym1] = 123;
         obj[sym2] = 456;
+
         expect(isObjectEmpty2(obj)).toBe(false);
     });
 
@@ -113,8 +115,39 @@ describe('isObjectEmpty2', () => {
 
     test('Object with only non-enumerable properties is considered empty', () => {
         const obj = {};
+
         Object.defineProperty(obj, 'prop1', { value: 1, enumerable: false });
         Object.defineProperty(obj, 'prop2', { value: 2, enumerable: false });
+
         expect(isObjectEmpty2(obj)).toBe(true);
+    });
+
+    test('Objects with prototype properties are considered non-empty', () => {
+        function Parent() {
+            this.inherited = 'value';
+        }
+
+        Parent.prototype.inheritedProp = 'prototype-value';
+
+        const child = new Parent();
+        expect(isObjectEmpty2(child)).toBe(false);
+    });
+
+    test('Objects with getter/setter properties', () => {
+        const obj = {};
+
+        Object.defineProperty(obj, 'computed', {
+            get() { return 'value'; },
+            enumerable: true
+        });
+
+        expect(isObjectEmpty2(obj)).toBe(false);
+    });
+
+    test('Object.create(null) with enumerable properties', () => {
+        const obj = Object.create(null);
+
+        obj.a = 1;
+        expect(isObjectEmpty2(obj)).toBe(false);
     });
 });
