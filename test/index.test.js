@@ -92,4 +92,29 @@ describe('isObjectEmpty2', () => {
         obj[sym] = 123;
         expect(isObjectEmpty2(obj)).toBe(false);
     });
+
+    test('Object with multiple Symbol properties is considered non-empty', () => {
+        const obj = {};
+        const sym1 = Symbol('test1');
+        const sym2 = Symbol('test2');
+
+        obj[sym1] = 123;
+        obj[sym2] = 456;
+        expect(isObjectEmpty2(obj)).toBe(false);
+    });
+
+    test('Object with mixed enumerable and non-enumerable properties is considered non-empty', () => {
+        const obj = { a: 1 };
+        const sym = Symbol('test');
+
+        Object.defineProperty(obj, sym, { value: 123, enumerable: false });
+        expect(isObjectEmpty2(obj)).toBe(false);
+    });
+
+    test('Object with only non-enumerable properties is considered empty', () => {
+        const obj = {};
+        Object.defineProperty(obj, 'prop1', { value: 1, enumerable: false });
+        Object.defineProperty(obj, 'prop2', { value: 2, enumerable: false });
+        expect(isObjectEmpty2(obj)).toBe(true);
+    });
 });

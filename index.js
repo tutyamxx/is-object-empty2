@@ -1,6 +1,6 @@
 /**
  *  is-object-empty2 - 📦 Tiny utility to check if a value is a plain empty object in JavaScript and TypeScript
- *  @version: v1.0.4
+ *  @version: v1.0.5
  *  @link: https://github.com/tutyamxx/is-object-empty2
  *  @license: MIT
  **/
@@ -23,6 +23,6 @@
 const isObjectEmpty2 = obj => (!!obj && typeof obj === 'object')
     && !Array.isArray(obj)
     && !(Object.keys(obj)?.length ?? 0)
-    && !Object.getOwnPropertySymbols(obj)?.some(s => Object.getOwnPropertyDescriptor(obj, s)?.enumerable ?? false);
+    && !(Object.getOwnPropertySymbols(obj)?.some(s => Object.getOwnPropertyDescriptor(obj, s)?.enumerable) ?? false);
 
 module.exports = isObjectEmpty2;
