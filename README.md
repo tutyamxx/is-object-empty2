@@ -8,7 +8,7 @@
 # Simple yet robust NPM package that checks if a value is a plain empty object in `JavaScript` and `TypeScript`.
 
 - Returns `true` **only** for plain objects with no own enumerable properties (`{}` or `Object.create(null)`).
-- Returns `false` for arrays, `null`, `undefined`, functions, symbols, BigInt, or objects with keys.
+- Returns `false` for `Arrays`, `null`, `undefined`, `functions`, `symbols`, `BigInt`, objects with keys or object with at least one own enumerable property (string or symbol)
 - Correctly handles:
   - Objects created with `Object.create(null)`
   - Frozen or sealed objects

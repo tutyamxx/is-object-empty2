@@ -84,4 +84,12 @@ describe('isObjectEmpty2', () => {
         Object.defineProperty(obj, 'hidden', { value: 123, enumerable: false });
         expect(isObjectEmpty2(obj)).toBe(true);
     });
+
+    test('Object with Symbol property is considered non-empty', () => {
+        const obj = {};
+        const sym = Symbol('test');
+
+        obj[sym] = 123;
+        expect(isObjectEmpty2(obj)).toBe(false);
+    });
 });
