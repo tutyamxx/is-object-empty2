@@ -138,6 +138,7 @@ describe('isObjectEmpty2', () => {
 
         Object.defineProperty(obj, 'computed', {
             get() { return 'value'; },
+            set() { /* setter */ },
             enumerable: true
         });
 
