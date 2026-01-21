@@ -5,7 +5,8 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg">
 </p>
 
-# Simple yet robust NPM package that checks if a value is a plain empty object in `JavaScript` and `TypeScript`.
+* ✨ Simple yet robust NPM package that checks if a value is a plain empty object in `JavaScript` and `TypeScript`.
+* ♻️ Works seamlessly with `CommonJS`, `ESM` and `TypeScript`
 
 - Returns `true` **only** for plain objects with no own enumerable properties (`{}` or `Object.create(null)`).
 - Returns `false` for `Arrays`, `null`, `undefined`, `functions`, `symbols`, `BigInt`, objects with keys or object with at least one own enumerable property (string or symbol)
@@ -29,7 +30,7 @@ $ npm i is-object-empty2
 - Returns `true` only for empty objects (`{}`), and `false` for arrays, null, undefined, or objects with keys.
 - See examples below
 
-# JavaScript
+## CommonJS
 ```javascript
 const isObjectEmpty2 = require('is-object-empty2');
 
@@ -40,7 +41,18 @@ console.log(isObjectEmpty2(null));         // false
 console.log(isObjectEmpty2(undefined));    // false
 ```
 
-# TypeScript
+## ESM
+```javascript
+import isObjectEmpty2 from 'is-object-empty2';
+
+console.log(isObjectEmpty2({}));           // true
+console.log(isObjectEmpty2({ a: 1 }));     // false
+console.log(isObjectEmpty2([]));           // false
+console.log(isObjectEmpty2(null));         // false
+console.log(isObjectEmpty2(undefined));    // false
+```
+
+## TypeScript
 ```javascript
 import isObjectEmpty2 = require('is-object-empty2');
 
