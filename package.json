@@ -1,6 +1,6 @@
 {
   "name": "is-object-empty2",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "📦 Tiny utility to check if a value is a plain empty object in JavaScript or TypeScript",
   "main": "index.js",
   "module": "index.js",

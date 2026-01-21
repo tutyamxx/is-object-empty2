@@ -54,7 +54,7 @@ console.log(isObjectEmpty2(undefined));    // false
 
 ## TypeScript
 ```javascript
-import isObjectEmpty2 = require('is-object-empty2');
+import isObjectEmpty2 from 'is-object-empty2';
 
 const testValues: unknown[] = [
     {},
