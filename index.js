@@ -1,6 +1,6 @@
 /**
  *  is-object-empty2 - 📦 Tiny utility to check if a value is a plain empty object in JavaScript and TypeScript
- *  @version: v1.0.9
+ *  @version: v1.1.0
  *  @link: https://github.com/tutyamxx/is-object-empty2
  *  @license: MIT
  **/
